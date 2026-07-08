@@ -1,7 +1,7 @@
 # Heroku Deployment Guide - Web3 Learn Bot
 
 ## ✅ Prerequisites Completed
-- ✅ Telegram Bot Token: `8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0`
+- ✅ Telegram Bot Token: `8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY`
 - ✅ Admin Chat ID: `7070802621`
 - ✅ Gmail: `donryscott28@gmail.com`
 - ✅ Heroku account needed (free tier available at https://www.heroku.com)
@@ -23,7 +23,7 @@ Add these secrets to your GitHub repository (**Settings → Secrets and variable
 HEROKU_API_KEY       - Your Heroku API key
 HEROKU_EMAIL         - Your Heroku account email
 HEROKU_APP_NAME      - Your app name (e.g., web3-learn-bot)
-TELEGRAM_BOT_TOKEN   - 8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0
+TELEGRAM_BOT_TOKEN   - 8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY
 ADMIN_CHAT_ID        - 7070802621
 GMAIL_USER           - donryscott28@gmail.com
 GMAIL_APP_PASSWORD   - Your Gmail password
@@ -77,7 +77,7 @@ Once all secrets are added:
 2. Commit your changes:
    ```bash
    git add .
-   git commit -m "Setup Heroku deployment with Telegram bot"
+   git commit -m "Setup Heroku deployment with active Telegram bot"
    git push origin main
    ```
 
@@ -114,7 +114,7 @@ See `.env.example` for all available environment variables. These are configured
 
 ## Your Bot Configuration
 
-**Telegram Bot Token:** `8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0`
+**Telegram Bot Token:** `8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY`
 **Admin Chat ID:** `7070802621`
 **Gmail Address:** `donryscott28@gmail.com`
 
