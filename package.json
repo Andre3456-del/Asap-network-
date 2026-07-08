@@ -1,0 +1,20 @@
+{
+  "name": "web3-learn-bot",
+  "version": "1.0.0",
+  "description": "Standalone Telegram bot for Web3 Learn AI - payments, access codes, dual notifications (Telegram + Email), and AI Q&A",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^2.7.0",
+    "nodemailer": "^6.9.14"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
