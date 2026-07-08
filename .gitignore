@@ -32,3 +32,25 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Node.js
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Heroku
+Procfile
+
+# Database
+*.db
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
