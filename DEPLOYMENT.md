@@ -1,9 +1,10 @@
 # Heroku Deployment Guide - Web3 Learn Bot
 
-## Prerequisites
-- Heroku account (free tier available at https://www.heroku.com)
-- GitHub account with this repository
-- Telegram Bot Token (from @BotFather on Telegram)
+## ✅ Prerequisites Completed
+- ✅ Telegram Bot Token: `8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0`
+- ✅ Admin Chat ID: `7070802621`
+- ✅ Gmail: `donryscott28@gmail.com`
+- ✅ Heroku account needed (free tier available at https://www.heroku.com)
 
 ## Step 1: Create a Heroku App
 
@@ -13,28 +14,36 @@
 4. Choose region (US or Europe)
 5. Click "Create app"
 
-## Step 2: Set Up GitHub Secrets
+## Step 2: Add GitHub Secrets
 
-Add these secrets to your GitHub repository (Settings → Secrets and variables → Actions):
+Add these secrets to your GitHub repository (**Settings → Secrets and variables → Actions**):
 
+### Required Secrets:
 ```
-HEROKU_API_KEY       - Your Heroku API key (get from Account Settings → API Key)
+HEROKU_API_KEY       - Your Heroku API key
 HEROKU_EMAIL         - Your Heroku account email
-HEROKU_APP_NAME      - Your Heroku app name (e.g., web3-learn-bot)
-TELEGRAM_BOT_TOKEN   - Your Telegram bot token
-EMAIL_SERVICE        - Email service (e.g., gmail)
-EMAIL_USER           - Your email address
-EMAIL_PASSWORD       - Your app-specific password (NOT your Gmail password)
-PAYMENT_API_KEY      - Your payment API key (if using payments)
-PAYMENT_API_URL      - Your payment API URL (if using payments)
+HEROKU_APP_NAME      - Your app name (e.g., web3-learn-bot)
+TELEGRAM_BOT_TOKEN   - 8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0
+ADMIN_CHAT_ID        - 7070802621
+GMAIL_USER           - donryscott28@gmail.com
+GMAIL_APP_PASSWORD   - Your Gmail password
 ```
 
-### How to Get GitHub Secrets:
+### Optional Secrets (for AI features):
+```
+GROQ_API_KEY         - For Groq AI responses
+OPENAI_API_KEY       - For OpenAI API responses
+USDT_BEP20_ADDRESS   - Your payment wallet address
+SUPPORT_TELEGRAM_HANDLE - Your Telegram handle
+```
+
+### How to Add GitHub Secrets:
 
 1. Go to your repository on GitHub
 2. Click **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
 4. Add each secret with its value
+5. Click **Add secret**
 
 ## Step 3: Get Your Heroku API Key
 
@@ -43,43 +52,47 @@ PAYMENT_API_URL      - Your payment API URL (if using payments)
 3. Click "Reveal" and copy your API key
 4. Add it to GitHub secrets as `HEROKU_API_KEY`
 
-## Step 4: Get Telegram Bot Token
+## Step 4: Configure Gmail
 
-1. Open Telegram and search for `@BotFather`
-2. Send `/start` → `/newbot`
-3. Follow the prompts to create your bot
-4. Copy the token provided
-5. Add it to GitHub secrets as `TELEGRAM_BOT_TOKEN`
+Since you couldn't generate an app password, we'll use your Gmail password:
 
-## Step 5: Configure Email Notifications (Gmail)
+1. Make sure your Gmail account has **Less secure app access** enabled:
+   - Go to https://myaccount.google.com/security
+   - Scroll down to "Less secure app access"
+   - Turn it ON
 
-If using Gmail for email notifications:
+2. Or generate an app password (recommended):
+   - Enable 2-Step Verification first: https://myaccount.google.com/security
+   - Go to https://myaccount.google.com/apppasswords
+   - Select "Mail" and "Other (custom name)"
+   - Name it "Web3LearnBot"
+   - Copy the 16-character password
+   - Add to GitHub secrets as `GMAIL_APP_PASSWORD`
 
-1. Go to https://myaccount.google.com/security
-2. Enable "2-Step Verification"
-3. Go to https://myaccount.google.com/apppasswords
-4. Generate an app-specific password
-5. Add to GitHub secrets:
-   - `EMAIL_USER`: your email address
-   - `EMAIL_PASSWORD`: the app-specific password (NOT your Gmail password)
-
-## Step 6: Deploy
+## Step 5: Deploy
 
 Once all secrets are added:
 
-1. Make any commit to the `main` branch (or manually trigger the workflow)
-2. GitHub Actions will automatically deploy to Heroku
-3. Watch the deployment progress in the **Actions** tab
+1. The setup script has already created all necessary files
+2. Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Setup Heroku deployment with Telegram bot"
+   git push origin main
+   ```
 
+3. GitHub Actions will automatically deploy to Heroku
+4. Watch the deployment progress in the **Actions** tab
+
+**Or manually deploy with Heroku CLI:**
 ```bash
-# Or manually deploy with Heroku CLI:
 heroku login
 heroku deploy:github --app=web3-learn-bot
 ```
 
-## Step 7: View Logs
+## Step 6: View Logs
 
-Monitor your app's logs:
+Monitor your bot's logs:
 
 ```bash
 heroku logs --tail --app=web3-learn-bot
@@ -95,20 +108,33 @@ Or view in the Heroku dashboard → your app → "View logs"
   - Heroku Dashboard → Resources → Add-ons → Heroku Postgres
   - Update your code to use PostgreSQL connection string from `DATABASE_URL` env var
 
-## Environment Variables Reference
+## Environment Variables
 
 See `.env.example` for all available environment variables. These are configured via GitHub secrets and passed to Heroku during deployment.
 
+## Your Bot Configuration
+
+**Telegram Bot Token:** `8972969632:AAESkY4-ItORLKCIPVJ1QX98Rsxtj40Ofq0`
+**Admin Chat ID:** `7070802621`
+**Gmail Address:** `donryscott28@gmail.com`
+
 ## Troubleshooting
 
-**Build fails:**
+**Bot not responding:**
 - Check GitHub Actions logs (Actions tab)
+- Run `heroku logs --tail --app=web3-learn-bot` to see errors
+- Verify all GitHub secrets are correctly added
+- Ensure Telegram bot token is active
+
+**Build fails:**
 - Verify all secrets are correctly added
-- Ensure `node` version is >=18 in `package.json`
+- Check that `node` version is >=18 in `package.json`
+- Look at GitHub Actions logs for specific errors
 
 **App crashes:**
 - Run `heroku logs --tail --app=web3-learn-bot` to see errors
 - Check that all required environment variables are set
+- Verify Gmail credentials are correct if email notifications fail
 
 **Need to scale or upgrade:**
 - Heroku dashboard → your app → Dyno formation
@@ -129,16 +155,21 @@ heroku logs --tail --app=web3-learn-bot
 # Restart app
 heroku restart --app=web3-learn-bot
 
+# View environment variables
+heroku config --app=web3-learn-bot
+
 # Scale dynos (upgrade from free)
 heroku ps:scale web=1 --app=web3-learn-bot
 ```
 
 ## Next Steps
 
-1. ✅ Create Heroku app
-2. ✅ Add GitHub secrets
-3. ✅ Push code to main branch
-4. ✅ Monitor deployment in Actions tab
-5. ✅ Check app on Heroku dashboard
+1. ✅ Run setup script: `./setup-heroku.sh`
+2. ⏭️ Create Heroku app
+3. ⏭️ Add all GitHub secrets
+4. ⏭️ Push code to main branch
+5. ⏭️ Monitor deployment in Actions tab
+6. ⏭️ Check app on Heroku dashboard
+7. ⏭️ Test bot on Telegram
 
-Your bot should be live! 🚀
+Your Web3 Learn Bot should be live! 🚀
