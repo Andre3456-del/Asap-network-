@@ -1,4 +1,4 @@
-# Heroku Deployment Guide - Web3 Learn Bot
+# Heroku Deployment Guide - Asap Network Bot
 
 ## ✅ Prerequisites Completed
 - ✅ Telegram Bot Token: `8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY`
@@ -10,7 +10,7 @@
 
 1. Go to https://dashboard.heroku.com
 2. Click "New" → "Create new app"
-3. Enter app name: `web3-learn-bot` (or your preferred name)
+3. Enter app name: `asap-network-bot` (or your preferred name)
 4. Choose region (US or Europe)
 5. Click "Create app"
 
@@ -22,7 +22,7 @@ Add these secrets to your GitHub repository (**Settings → Secrets and variable
 ```
 HEROKU_API_KEY       - Your Heroku API key
 HEROKU_EMAIL         - Your Heroku account email
-HEROKU_APP_NAME      - Your app name (e.g., web3-learn-bot)
+HEROKU_APP_NAME      - Your app name (e.g., asap-network-bot)
 TELEGRAM_BOT_TOKEN   - 8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY
 ADMIN_CHAT_ID        - 7070802621
 GMAIL_USER           - donryscott28@gmail.com
@@ -65,7 +65,7 @@ Since you couldn't generate an app password, we'll use your Gmail password:
    - Enable 2-Step Verification first: https://myaccount.google.com/security
    - Go to https://myaccount.google.com/apppasswords
    - Select "Mail" and "Other (custom name)"
-   - Name it "Web3LearnBot"
+   - Name it "AsapNetworkBot"
    - Copy the 16-character password
    - Add to GitHub secrets as `GMAIL_APP_PASSWORD`
 
@@ -77,7 +77,7 @@ Once all secrets are added:
 2. Commit your changes:
    ```bash
    git add .
-   git commit -m "Setup Heroku deployment with active Telegram bot"
+   git commit -m "Setup Heroku deployment for Asap Network Bot"
    git push origin main
    ```
 
@@ -87,7 +87,7 @@ Once all secrets are added:
 **Or manually deploy with Heroku CLI:**
 ```bash
 heroku login
-heroku deploy:github --app=web3-learn-bot
+heroku deploy:github --app=asap-network-bot
 ```
 
 ## Step 6: View Logs
@@ -95,7 +95,7 @@ heroku deploy:github --app=web3-learn-bot
 Monitor your bot's logs:
 
 ```bash
-heroku logs --tail --app=web3-learn-bot
+heroku logs --tail --app=asap-network-bot
 ```
 
 Or view in the Heroku dashboard → your app → "View logs"
@@ -114,6 +114,7 @@ See `.env.example` for all available environment variables. These are configured
 
 ## Your Bot Configuration
 
+**Bot Name:** Asap Network
 **Telegram Bot Token:** `8970100443:AAGJoI0mT64yw7Tq5fZkOmNimSj5_8fR3UY`
 **Admin Chat ID:** `7070802621`
 **Gmail Address:** `donryscott28@gmail.com`
@@ -122,7 +123,7 @@ See `.env.example` for all available environment variables. These are configured
 
 **Bot not responding:**
 - Check GitHub Actions logs (Actions tab)
-- Run `heroku logs --tail --app=web3-learn-bot` to see errors
+- Run `heroku logs --tail --app=asap-network-bot` to see errors
 - Verify all GitHub secrets are correctly added
 - Ensure Telegram bot token is active
 
@@ -132,7 +133,7 @@ See `.env.example` for all available environment variables. These are configured
 - Look at GitHub Actions logs for specific errors
 
 **App crashes:**
-- Run `heroku logs --tail --app=web3-learn-bot` to see errors
+- Run `heroku logs --tail --app=asap-network-bot` to see errors
 - Check that all required environment variables are set
 - Verify Gmail credentials are correct if email notifications fail
 
@@ -147,29 +148,29 @@ See `.env.example` for all available environment variables. These are configured
 heroku login
 
 # View app status
-heroku apps:info --app=web3-learn-bot
+heroku apps:info --app=asap-network-bot
 
 # Check logs
-heroku logs --tail --app=web3-learn-bot
+heroku logs --tail --app=asap-network-bot
 
 # Restart app
-heroku restart --app=web3-learn-bot
+heroku restart --app=asap-network-bot
 
 # View environment variables
-heroku config --app=web3-learn-bot
+heroku config --app=asap-network-bot
 
 # Scale dynos (upgrade from free)
-heroku ps:scale web=1 --app=web3-learn-bot
+heroku ps:scale web=1 --app=asap-network-bot
 ```
 
 ## Next Steps
 
 1. ✅ Run setup script: `./setup-heroku.sh`
-2. ⏭️ Create Heroku app
+2. ⏭️ Create Heroku app (name it `asap-network-bot`)
 3. ⏭️ Add all GitHub secrets
 4. ⏭️ Push code to main branch
 5. ⏭️ Monitor deployment in Actions tab
 6. ⏭️ Check app on Heroku dashboard
 7. ⏭️ Test bot on Telegram
 
-Your Web3 Learn Bot should be live! 🚀
+Your Asap Network Bot should be live! 🚀
